@@ -6,19 +6,20 @@
     <title>Converter</title>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="exchange.png" type="image/x-icon">
-
 </head>
 <body>
-    
     <div class="container">
-        <h2>EN ⇄ UA Converter </h2>
-        <button class="b-convert">Convert</button>
-        <button class="b-copy">Copy</button>
-        <button class="b-clear">Clear</button>
-        <textarea name="" id="text" cols="30" rows="10">Ghfw.'! Ерші цщклі ещщ!</textarea>
-        <div class="out"></div>
-        <p class="hint">Coppied to clipboard!</p>
+        <h2>EN ⇄ UA Layout converter </h2>
+        <div class="b-container">
+            <button class="b-convert">Convert</button>
+            <button class="b-copy">Copy</button>
+            <button class="b-clear">Clear</button>
+        </div>
+        <textarea id="textarea" class="textarea">Ghfw.'! Ерші цщклі ещщ!</textarea>
+        <p class="hints-text">Output:</p>
+        <textarea class="output textarea"></textarea>
     </div>
+    <p class="hint">Copied to clipboard!</p>
     
     <script src="script.js"></script>
 </body>
