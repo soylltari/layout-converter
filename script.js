@@ -37,7 +37,7 @@ const letters = {
 
 // function for adding exceptions to objects(in case there are more languages in the future)
 function addException(object, key, value) {
-  return (object[key] = value);
+  object[key] = value;
 }
 
 //create object with upper-case elements
@@ -56,12 +56,12 @@ addException(capitalLetters, ":", "Ж");
 addException(capitalLetters, '"', "Є");
 
 //create objects with swapped keys and values
-const swappedLetters = Object.fromEntries(
-  Object.entries(letters).map(([key, value]) => [value, key])
-);
-const swappedCapitalLetters = Object.fromEntries(
-  Object.entries(capitalLetters).map(([key, value]) => [value, key])
-);
+function swapObject(obj) {
+  return Object.fromEntries(Object.entries(obj).map(([key, value]) => [value, key]));
+}
+
+const swappedLetters = swapObject(letters);
+const swappedCapitalLetters = swapObject(capitalLetters);
 
 //merge objects for better iteration
 const initialObjects = { ...capitalLetters, ...letters };
@@ -73,18 +73,10 @@ const outputText = document.querySelector(".output");
 function converter() {
   const input = inputText.value;
   outputText.value = "";
-  let outputArray = [];
-  for (const item of input) {
-    //search for a match in input and objects
-    if (Object.hasOwn(initialObjects, item)) {
-      outputArray.push(initialObjects[item]);
-    } else if (Object.hasOwn(swappedObjects, item)) {
-      outputArray.push(swappedObjects[item]);
-    } else {
-      outputArray.push(item);
-    }
-  }
-  outputText.value = outputArray.join("");
+  const output = [...input].map(char =>
+    initialObjects[char] ?? swappedObjects[char] ?? char
+  );
+  outputText.value = output.join("");
 }
 
 //function to clear input
